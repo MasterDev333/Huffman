@@ -91,3 +91,6 @@
 				</div>
 			</div>
 		</header>
+		<?php if( !is_page_template( 'page-templates/home.php' ) ): ?>
+			<?php get_template_part( 'template-parts/content', 'banner' ); ?>
+		<?php endif; ?>

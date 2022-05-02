@@ -61,15 +61,14 @@ function breadcrumb_trail( $args = array() ) {
 	if ( $show_home && is_front_page() )
 		$trail['trail_end'] = "{$show_home}";
 	elseif ( $show_home )
-		$trail[] = '<a href="' . esc_url(home_url().'/') . '" title="' . esc_attr(get_bloginfo( 'name' )) . '" rel="home" class="trail-begin">' . $show_home . '</a>';
+		$trail[] = '<li><a href="' . esc_url(home_url().'/') . '" title="' . esc_attr(get_bloginfo( 'name' )) . '" rel="home" class="trail-begin"><svg width="34" height="36"><use xlink:href="' . get_template_directory_uri() . '/assets/img/sprite.svg#house' . '"></use></svg></a></li>';
 
 	if ( is_home() && !is_front_page() ) {
 		$home_page = get_page( $wp_query->get_queried_object_id() );
-
 			$parent_id = $home_page->post_parent;
 			while ( $parent_id ) {
 				$page = get_page( $parent_id );
-				$parents[]  = '<a href="' . get_permalink( $page->ID ) . '" title="' . esc_attr(get_the_title( $page->ID )). '">' . get_the_title( $page->ID ) . '</a>';
+				$parents[]  = '<li><a href="' . get_permalink( $page->ID ) . '" title="' . esc_attr(get_the_title( $page->ID )). '">' . get_the_title( $page->ID ) . '</a></li>';
 				$parent_id  = $page->post_parent;
 			}
 			if ( $parents ) {
@@ -77,7 +76,7 @@ function breadcrumb_trail( $args = array() ) {
 				foreach ( $parents as $parent )
 					$trail[] = $parent;
 			}
-		$trail['trail_end'] = get_the_title( $home_page->ID );
+		$trail['trail_end'] = '<li>' . get_the_title( $home_page->ID ) . '</li>';
 	}
 
 	elseif ( is_singular() ) {
@@ -86,7 +85,7 @@ function breadcrumb_trail( $args = array() ) {
 			$parent_id = $wp_query->post->post_parent;
 			while ( $parent_id ) {
 				$page = get_page( $parent_id );
-				$parents[]  = '<a href="' . get_permalink( $page->ID ) . '" title="' . esc_attr(get_the_title( $page->ID )) . '">' . get_the_title( $page->ID ) . '</a>';
+				$parents[]  = '<li><a href="' . get_permalink( $page->ID ) . '" title="' . esc_attr(get_the_title( $page->ID )) . '">' . get_the_title( $page->ID ) . '</a></li>';
 				$parent_id  = $page->post_parent;
 			}
 			if ( isset($parents) ) {
@@ -96,7 +95,7 @@ function breadcrumb_trail( $args = array() ) {
 			}
 		}
 		elseif ( is_attachment() ) {
-			$trail[] = '<a href="' . get_permalink( $wp_query->post->post_parent ) . '" title="' . esc_attr(get_the_title( $wp_query->post->post_parent )) . '">' . get_the_title( $wp_query->post->post_parent ) . '</a>';
+			$trail[] = '<li><a href="' . get_permalink( $wp_query->post->post_parent ) . '" title="' . esc_attr(get_the_title( $wp_query->post->post_parent )) . '">' . get_the_title( $wp_query->post->post_parent ) . '</a></li>';
 		}
 
 		elseif ( is_single() ) {
@@ -104,7 +103,7 @@ function breadcrumb_trail( $args = array() ) {
 				$trail[] = $terms;
 		}
 
-		$trail['trail_end'] = get_the_title();
+		$trail['trail_end'] = '<li>' . get_the_title() . '</li>';
 	}
 
 	elseif ( is_archive() ) {
@@ -170,11 +169,11 @@ function breadcrumb_trail( $args = array() ) {
 		$trail['trail_end'] = __( '404 Not Found', 'am' );
 
 	/* Connect the breadcrumb trail. */
-	$breadcrumb = '<div class="breadcrumb"><div class="breadcrumb-trail">';
+	$breadcrumb = '<nav class="breadcrumbs-nav"><div class="container"><ul class="breadcrumbs">';
 	$breadcrumb .= " {$before} ";
 	if ( is_array( $trail ) )
 		$breadcrumb .= join( " {$separator} ", $trail );
-	$breadcrumb .= '</div></div>';
+	$breadcrumb .= '</ul></div></nav>';
 
 	$breadcrumb = apply_filters( 'breadcrumb_trail', $breadcrumb );
 

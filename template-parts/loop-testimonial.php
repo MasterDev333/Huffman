@@ -6,33 +6,17 @@
             <span class="author">- <?php the_title( ); ?></span>
         </blockquote>
     </div>
+    <?php if( $ratings = get_field( 'rating' ) ): ?>
     <div class="rating-block">
         <ul class="rating-list">
+            <?php for( $i = 0; $i < intval( $ratings ); $i++ ): ?>
             <li>
                 <svg width="24" height="24">
                     <use xlink:href="<?php echo get_template_directory_uri(  ) . '/assets/img/sprite.svg#star'; ?>"></use>
                 </svg>
             </li>
-            <li>
-                <svg width="24" height="24">
-                    <use xlink:href="<?php echo get_template_directory_uri(  ) . '/assets/img/sprite.svg#star'; ?>"></use>
-                </svg>
-            </li>
-            <li>
-                <svg width="24" height="24">
-                    <use xlink:href="<?php echo get_template_directory_uri(  ) . '/assets/img/sprite.svg#star'; ?>"></use>
-                </svg>
-            </li>
-            <li>
-                <svg width="24" height="24">
-                    <use xlink:href="<?php echo get_template_directory_uri(  ) . '/assets/img/sprite.svg#star'; ?>"></use>
-                </svg>
-            </li>
-            <li>
-                <svg width="24" height="24">
-                    <use xlink:href="<?php echo get_template_directory_uri(  ) . '/assets/img/sprite.svg#star'; ?>"></use>
-                </svg>
-            </li>
+            <?php endfor; ?>
         </ul>
     </div>
+    <?php endif; ?>
 </div>
