@@ -1,3 +1,50 @@
+.float-left {
+    float: left;
+	padding: 0 0.5rem;
+}
 .accordion-item .expanded {
     display: none;
+}
+.accordion-item .expanded p::before {
+    content: none;
+}
+.accordion-item .expanded ul {
+    padding-left: 20px;
+}
+.accordion-item .expanded ul li {
+    list-style: disc;
+}
+
+.content-inner ul {
+	text-align: left;
+}
+.content-inner ul li {
+	position: relative;
+	padding: 0 0 0 2em;
+}
+.content-inner ul li + li {
+	margin-top: 7px;
+}
+.content-inner ul li:before {
+	content: "";
+	position: absolute;
+	top: 0.45em;
+	left: 0;
+	width: 0.944em;
+	height: 0.944em;
+	border-radius: 50%;
+	border-style: solid;
+	background: #e6c65b;
+	border-color: #e6d5ba;
+	border-width: 0.056em;
+	-webkit-box-shadow: inset 0 0 0 0.167em #fff;
+	        box-shadow: inset 0 0 0 0.167em #fff;
+}
+.fixed-header .header {
+	position: fixed;
+	width: 100%;
+	background-color: #223453;
+}
+.admin-bar.fixed-header .header {
+	top: 32px;
 }

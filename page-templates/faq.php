@@ -24,7 +24,9 @@ get_header(); ?>
                 <?php endif; ?>
                 <?php if( $answer = get_sub_field( 'answer' ) ): ?>
                 <div class="expanded">
-                    <p data-parent="A:"><?php echo $answer; ?></p>
+                    <div>
+                        <span class="float-left">A:</span>
+                        <?php echo $answer; ?></div>
                 </div>
                 <?php endif; ?>
             </div>
@@ -33,7 +35,5 @@ get_header(); ?>
     </div>
 </section>
 <?php endif; ?>
-
-<?php get_template_part( 'template-parts/content', 'result-section' ); ?>
 
 <?php get_footer(); ?>

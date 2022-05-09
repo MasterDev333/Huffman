@@ -3234,10 +3234,11 @@ html {
 
 .header {
 	position: relative;
-	z-index: 10;
+	z-index: 1000;
 	background: #223453;
+	transition: all .3s ease-in-out;
 }
-body.home .header {
+.home .header {
 	background: transparent;
 	position: absolute;
 	top: 0;
@@ -7845,7 +7846,7 @@ body.nav-active .nav-opener:after {
 		    -ms-flex-pack: justify;
 		        justify-content: space-between;
 	}
-	body.home .header .header-menu-wrapper {
+	.home .header .header-menu-wrapper {
 		padding-bottom: 50px;
 	}
 	.under-footer {

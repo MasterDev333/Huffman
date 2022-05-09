@@ -1,3 +1,6 @@
+		<?php if( get_field( 'enable_recovered_clients' ) && get_field( 'recorvered_clients_position') == 'top' ): ?>
+			<?php get_template_part( 'template-parts/content', 'result-section' ); ?>
+		<?php endif; ?>
 		<?php if( get_field( 'enable_clients' ) ): 
 			$style = get_field( 'clients_style' );
 			$title_class = ( $style == 'blue' ) ? 'section-headline-title text-white' : 'section-headline-title';
@@ -39,7 +42,7 @@
 				</div>
 			</section>
 		<?php endif; ?>
-		<?php if( get_field( 'enable_recovered_clients' ) ): ?>
+		<?php if( get_field( 'enable_recovered_clients' ) && get_field( 'recorvered_clients_position') != 'top' ): ?>
 			<?php get_template_part( 'template-parts/content', 'result-section' ); ?>
 		<?php endif; ?>
 		<?php if( get_field( 'enable_form' ) ): ?>
