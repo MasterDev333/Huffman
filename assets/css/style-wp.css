@@ -14,17 +14,20 @@
 .accordion-item .expanded ul li {
     list-style: disc;
 }
-
+.item-list__wrapper ul,
 .content-inner ul {
 	text-align: left;
 }
+.item-list__wrapper ul li,
 .content-inner ul li {
 	position: relative;
 	padding: 0 0 0 2em;
 }
+.item-list__wrapper ul li + li,
 .content-inner ul li + li {
 	margin-top: 7px;
 }
+.item-list__wrapper ul li:before,
 .content-inner ul li:before {
 	content: "";
 	position: absolute;
@@ -47,4 +50,264 @@
 }
 .admin-bar.fixed-header .header {
 	top: 32px;
+}
+.side-contact .btn-form .btn-white {
+	color: #000;
+	border-color: #e6c65b;
+}
+.bg-primary .form-field .jcf-unselectable + label {
+	color: #fff;
+}
+
+.side-contact .frm_form_field.frm_half,
+.side-contact .frm_form_field.frm6	{
+	width: 100%;
+	grid-column: 1/13;
+}
+.single-post__content ul,
+.single-post__content ol {
+	padding-left: 20px;
+}
+.single-post__content li {
+	margin-bottom: 1em;
+}
+.single-post__content ul li {
+	list-style: disc;
+}
+
+.single-post__content ol li {
+	list-style: numeric;
+}
+.contact-info {
+	margin: 50px 0;
+	text-align: center;
+}
+.contact-info .section-headline {
+	margin-bottom: 1em;
+}
+.contact-info .contact-info__subheading {}
+.contact-info .contact-info__content {}
+.form-map {
+	margin: 50px 0;
+}
+.form-map .container {
+	display: grid;
+	grid-template-columns: 50% 50%;
+}
+.form-map__form {
+	position: relative;
+	display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    padding: 2rem;
+    z-index: 0;
+}
+.form-map__form .cta-form {}
+.form-map__map {}
+.footer_title {
+	color: #fff;
+}
+.page-template-accident .side-nav .menu > li:first-child a {
+	font-size: 26px;
+	border-color: rgba(255, 255, 255, 0.2);
+}
+.page-template-accident .side-nav.bg-primary .menu > li:first-child > a {
+	font-family: "Frank Ruhl Libre", serif;
+	color: #E6C45C;
+	text-transform: uppercase;
+}
+.page-template-accident .side-nav.bg-primary .menu > li.current-menu-item > a {
+    background-color: #fff;
+    color: #e3a22f;
+}
+.single-post__content {
+	padding: 100px 0;
+}
+.bullt-list.split,
+.col-2 {
+	column-count: 2;
+}
+.page-template-accident .content-inner h2 {
+	display: block;
+    font-family: "Montserrat";
+    font-size: 1.7rem;
+    line-height: 1.2;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #80b1de;
+}
+.page-template-default .post {
+	margin-bottom: 100px;
+}
+.fixed-header .header .contact-block:hover {
+	color: #fff;
+}
+
+.our-successes {
+	padding: 50px 0;
+}
+.our-successes .category {
+	margin-bottom: 50px;
+	display: flex;
+	align-items: center;
+}
+.our-successes .category label {
+	margin-right: 20px;
+	font-size: 2rem;
+	line-height: 1.4;
+	color: #234071;
+	white-space: nowrap;
+}
+.our-successes .category .jcf-select {
+	max-width: 250px;
+}
+.successes-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-gap: 4rem;
+}
+.successes-grid .single-success {
+	text-align: center;
+	color: #fff;
+}
+.successes-grid .single-success__title {
+	padding: 2rem;
+	font-size: 2rem;
+	line-height: 1;
+	background-color: #E6C65B;
+}
+.successes-grid .single-success__content {
+	padding: 2rem;
+	background-color: #223453;	
+}
+.successes-grid .single-success__heading {
+	margin-bottom: 20px;
+	color: #fff;
+}
+.successes-grid .single-success__description {}
+
+.menu > li.active > a {
+	opacity: 1;
+    background-color: #234071;
+    color: #fff;
+}
+
+.section-video {
+	margin-bottom: 50px;
+}
+.section-video .container {
+	display: grid;
+	grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.section-video__video {
+	position: relative;
+	width: 100%;
+	min-height: 250px;
+}
+.section-video__video video {
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+.section-video__content {
+	display: flex;
+	padding: 20px;
+	flex-direction: column;
+	justify-content: center;
+	text-align: center;
+	box-shadow: 10px 10px 25px rgba(0, 0, 0, 0.1);
+}
+.section-video .social-items {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.section-video .social-item {
+	padding: 0 10px;
+}
+.section-video .social-item a {
+	display: flex;
+	width: 50px;
+	height: 50px;
+	background-color: #E6C65B;
+	border: 1px solid #e6c65b;
+	border-radius: 50%;
+	color: #fff;
+	align-items: center;
+	justify-content: center;
+	transition: all .3s ease-in-out;
+}
+.section-video .social-item a svg {
+	width: 24px;
+	fill: #fff;
+	transition: all .3s ease-in-out;
+}
+.section-video .social-item a:hover {
+	background: #fff;
+}
+.section-video .social-item a:hover svg {
+	fill: #000;
+}
+.breadcrumbs .breadcrumb-link {
+	padding-right: 40px;
+}
+.breadcrumbs .breadcrumb-link a::before {
+	left: 40px;
+}
+@media only screen and (max-width: 1023px) {
+	.page-template-accident .content-inner h2 {	
+		font-size: 21px;
+		margin: 0 0 15px;	
+	}
+}
+@media only screen and (max-width: 767px) {
+	.admin-bar.fixed-header .header {
+		top: 0;
+	}
+	.form-map .container {
+		display: block;
+	}
+	.single-post__content {
+		padding: 50px 0;
+	}
+	.bullt-list.split,
+	.col-2 {
+		column-count: 1;
+	}
+	.page-template-default .post {
+		margin-bottom: 50px;
+	}
+	.our-successes .category {
+		display: block;
+	}
+	.our-successes .category label {
+		margin-right: 0;
+		margin-bottom: 10px;
+		font-size: 20px;
+	}
+	.our-successes .category .jcf-select {
+		max-width: 100%;
+	}
+	.successes-grid {
+		grid-template-columns: 1fr;
+	}
+	.successes-grid .single-success__title {
+		padding: 20px;
+		font-size: 20px;
+	}
+	.successes-grid .single-success__content {
+		padding: 20px;
+	}
+	.section-video .container {
+		display: block;
+	}
+	.section-video__video {
+		margin-bottom: 30px;
+	}
 }

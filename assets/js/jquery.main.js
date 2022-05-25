@@ -1,3 +1,5 @@
+// const { ajax } = require("jquery");
+
 var $ = jQuery.noConflict();
 jQuery(function () {
 	isElementExist(".nav-drop", initSmartMenu);
@@ -13,6 +15,7 @@ jQuery(function () {
 	initTab();
 	initAccordion();
 	initStaffSlider();
+	initSuccessGrid();
 });
 
 //-------- -------- -------- --------
@@ -82,6 +85,27 @@ function initStaffSlider() {
 	});
 }
 
+function initSuccessGrid() {
+	$('.our-successes #category-select').on('change', function() {
+		let id = $(this).val();
+		$.ajax({
+			url: ajaxurl,
+			type: "POST",
+			data: {
+				action: "load_ajax_successes",
+				id,
+			},
+			beforeSend: function () {
+				
+			},
+			success: function (res) {
+				$('.successes-grid').html( res );
+			},
+			complete: function () {}
+		});
+	})
+}
+
 function initAccordion() {
 	$('.accordion-item:not(.open) .expanded').hide();
 	$('.accordion-item .title-toggle').on('click', function (e) {
@@ -102,11 +126,11 @@ function initAccordion() {
 }
 
 function initInputFocus() {
-	$('.input-form').on('focusin', function () {
+	$('.form-field input, .form-field textarea').on('focusin', function () {
 		$(this).closest('.form-field').find('label').addClass('focus');
 	});
 
-	$('.input-form').on('focusout', function () {
+	$('.form-field input, .form-field textarea').on('focusout', function () {
 		if (!this.value) {
 			$(this).closest('.form-field').find('label').removeClass('focus');
 		}
@@ -347,8 +371,8 @@ function initHeaderFixed() {
 // initialize custom form elements (checkbox, radio, select) https://github.com/w3co/jcf
 function initCustomForms() {
 	jcf.setOptions('Select', {
-		maxVisibleItems: 5, // visible dropdown items before scroll appear
 		wrapNative: false,
+		wrapNativeOnMobile: false
 	});
 	jcf.replaceAll();
 }

@@ -37,11 +37,13 @@ get_header(); ?>
                     <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 's3_heading', 'o' => 'f', 't' => 'h2', 'tc' => 'section-headline-title', 'w' => 'div', 'wc' => 'section-headline left wow' ) ); ?>
                     <?php if( have_rows( 's3_tabs' ) ): ?>
                     <ul class="tab-list">
-                        <?php while( have_rows( 's3_tabs' ) ): the_row( ); ?>
+                        <?php while( have_rows( 's3_tabs' ) ): the_row( ); 
+                        if( $link = get_sub_field( 'link' ) ): ?>
                         <li class="<?php echo get_row_index() == 1 ? 'active' : ''; ?>">
-                            <a href="#" data-tab="tab-<?php echo get_row_index(); ?>"><?php the_sub_field( 'text' ); ?></a>
+                            <a href="<?php echo $link['url']; ?>" data-tab="tab-<?php echo get_row_index(); ?>"><?php echo $link['title']; ?></a>
                         </li>
-                        <?php endwhile; ?>
+                        <?php endif;
+                        endwhile; ?>
                     </ul>
                     <?php endif; ?>
                     <?php get_template_part_args( 'template-parts/content-modules-cta', array( 'v' => 's3_cta', 'o' => 'f', 'c' => 'btn btn-primary white', 'w' => 'div', 'wc' => 'btn-holder' ) ); ?>

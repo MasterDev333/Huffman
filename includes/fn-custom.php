@@ -805,3 +805,37 @@ function get_mark_image( $type = 'sub' ) {
         return get_template_directory_uri(  ) . '/assets/img/decor-txt-wavy.svg';
     endif;
 }
+
+add_action('wp_ajax_load_ajax_successes', 'load_ajax_successes_handler');
+add_action('wp_ajax_nopriv_load_ajax_successes', 'load_ajax_successes_handler');
+
+function load_ajax_successes_handler()
+{
+	$id = $_POST['id'];
+    $args = array(
+        'post_type'         => 'success',
+        'post_status'       => 'publish',
+        'posts_per_page'    => -1,
+    );
+    if( !empty( $id ) ) {
+        $args['tax_query'] = array(
+            array( 
+                'taxonomy'      => 'success_category',
+                'field'         => 'term_id',
+                'terms'         => $id
+            )
+        );
+    }
+	$query = new WP_Query( $args );
+    ob_start();
+    if( $query->have_posts( ) ):
+        while( $query->have_posts( ) ): $query->the_post(  );
+            get_template_part( 'template-parts/loop', 'success' );
+        endwhile;
+    else: ?>
+        <h2>No items available</h2>
+    <?php endif;
+    wp_reset_query(  );
+	echo ob_get_clean();
+	die;
+}

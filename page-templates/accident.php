@@ -33,53 +33,21 @@ get_header(); ?>
                     <?php endif; ?>
                 </div>
                 <div class="side-contact side-item">
-                    <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'form_heading', 't' => 'h2' ) ); ?>
-                    <form action="#">
-                        <h3 class="title-3"></h3>
-                        <div class="form-field">
-                            <input type="text" class="input-form">
-                            <label>First Name</label>
-                        </div>
-                        <div class="form-field">
-                            <input type="text" class="input-form">
-                            <label>Last Name</label>
-                        </div>
-                        <div class="form-field">
-                            <input type="tel" class="input-form">
-                            <label>Phone</label>
-                        </div>
-                        <div class="form-field">
-                            <input type="email" class="input-form">
-                            <label>Email</label>
-                        </div>
-                        <div class="form-field">
-                            <select>
-                                <option selected="" disabled="">&nbsp;</option>
-                                <option value="1">Yes, I am a potential new client</option>
-                                <option value="2">No, I'm a current existing client</option>
-                                <option value="3">I'm neither.</option>
-                            </select>
-                            <label>Are you a new client?</label>
-                        </div>
-                        <div class="form-field">
-                            <textarea class="input-form"></textarea>
-                            <label>Message</label>
-                        </div>
-                        <div class="btn-form">
-                            <button class="btn btn-primary">Send</button>
-                        </div>
-                    </form>
-                </div>
-                <div class="side-nav bg-primary side-item">
-                    <h2 class="side-nav-title title-3"><a href="#">Car Accidents</a></h2>
-                    <?php if( have_rows( 'menus' ) ): ?>
-                    <ul class="menu">
-                        <?php while( have_rows( 'menus' ) ): the_row( ); 
-                            get_template_part_args( 'template-parts/content-modules-cta', array( 'v' => 'menu', 'w' => 'li' ) ); 
-                        endwhile; ?>
-                    </ul>
+                    <h2>NO FEE UNLESS WE WIN!</h2>
+                    <?php // get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'form_heading', 't' => 'h2' ) ); ?>
+                    <?php if( $form = get_field( 'cf_form', 'options' ) ): ?>
+                        <?php echo do_shortcode( $form ); ?>
                     <?php endif; ?>
                 </div>
+                <?php if( $menu = get_field( 'menus' ) ): ?>
+                <div class="side-nav bg-primary side-item">
+                    <?php wp_nav_menu( array(
+                        'menu'          => $menu,
+                        'menu_class'    => 'menu',
+                        'container'     => false,
+                    ) ); ?>
+                </div>
+                <?php endif; ?>
             </aside>
             <div class="content">
                 <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 's1_heading', 'o' => 'f', 't' => 'h2' ) ); ?>
@@ -104,12 +72,12 @@ get_header(); ?>
                 <div class="content-wrap">
                     <span class="line-1">&nbsp;</span>
                     <span class="line-2">&nbsp;</span>
-                    <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 's2_heading', 'o' => 'f', 't' => 'h2', 'tc' => 'section-headline-title title-2', 'w' => 'div', 'wc' => 'section-headline left wow' ) ); ?>
-                    <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 's2_content', 'o' => 'f', 't' => 'div' ) ); ?>
-                    <?php get_template_part_args( 'template-parts/content-modules-cta', array( 'v' => 's2_cta', 'o' => 'f', 'c' => 'btn btn-primary', 'w' => 'div', 'wc' => 'btn-holder' ) ); ?>
+                    <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'about_heading', 'o' => 'o', 't' => 'h2', 'tc' => 'section-headline-title title-2', 'w' => 'div', 'wc' => 'section-headline left wow' ) ); ?>
+                    <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'about_content', 'o' => 'o', 't' => 'div', 'tc' => 'item-list__wrapper' ) ); ?>
+                    <?php get_template_part_args( 'template-parts/content-modules-cta', array( 'v' => 'about_cta', 'o' => 'o', 'c' => 'btn btn-primary', 'w' => 'div', 'wc' => 'btn-holder' ) ); ?>
                 </div>
             </div>
-            <?php get_template_part_args( 'template-parts/content-modules-image', array( 'v' => 's2_image', 'o' => 'f', 'is' => false, 'v2x' => false, 'w' => 'div', 'wc' => 'tile-module-visual v3' ) ); ?>
+            <?php get_template_part_args( 'template-parts/content-modules-image', array( 'v' => 'about_image', 'o' => 'o', 'is' => false, 'v2x' => false, 'w' => 'div', 'wc' => 'tile-module-visual v3' ) ); ?>
         </div>
     </div>
     <div class="bg-stretch">
@@ -123,8 +91,8 @@ get_header(); ?>
 
 <section class="section">
     <div class="container">
-        <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 's3_heading', 'o' => 'f', 't' => 'h2', 'tc' => 'section-headline-title', 'w' => 'div', 'wc' => 'section-headline wow' ) ); ?>
-        <?php if( $testimonials = get_field( 's3_testimonials' ) ): ?>
+        <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'clients_heading', 'o' => 'o', 't' => 'h2', 'tc' => 'section-headline-title', 'w' => 'div', 'wc' => 'section-headline wow' ) ); ?>
+        <?php if( $testimonials = get_field( 'clients_testimonials', 'options' ) ): ?>
         <ul class="row-list">
             <?php foreach( $testimonials as $testimonial ): ?>
             <li>
@@ -140,7 +108,7 @@ get_header(); ?>
             <?php endforeach; ?>
         </ul>
         <?php endif; ?>
-        <?php get_template_part_args( 'template-parts/content-modules-cta', array( 'v' => 's3_cta', 'o' => 'f', 'c' => 'btn btn-primary', 'w' => 'div', 'wc' => 'btn-init' ) ); ?>
+        <?php get_template_part_args( 'template-parts/content-modules-cta', array( 'v' => 'clients_cta', 'o' => 'o', 'c' => 'btn btn-primary', 'w' => 'div', 'wc' => 'btn-init' ) ); ?>
     </div>
 </section>
 <section class="section">
@@ -149,10 +117,10 @@ get_header(); ?>
             <span class="line-1">&nbsp;</span>
             <span class="line-2">&nbsp;</span>
             <div class="section-headline wow">
-                <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 's4_heading', 'o' => 'f', 't' => 'h2', 'tc' => 'section-headline-title' ) ); ?>
-                <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 's4_sub_heading', 'o' => 'f', 't' => 'p' ) ); ?>
+                <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'consultation_heading', 'o' => 'o', 't' => 'h2', 'tc' => 'section-headline-title' ) ); ?>
+                <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'consultation_sub_heading', 'o' => 'o', 't' => 'p' ) ); ?>
             </div>
-            <?php get_template_part_args( 'template-parts/content-modules-cta', array( 'v' => 's4_cta', 'o' => 'f', 'c' => 'btn btn-primary white', 'w' => 'div', 'wc' => 'cta-module-btn' ) ); ?>
+            <?php get_template_part_args( 'template-parts/content-modules-cta', array( 'v' => 'consultation_cta', 'o' => 'o', 'c' => 'btn btn-primary white', 'w' => 'div', 'wc' => 'cta-module-btn' ) ); ?>
         </div>
     </div>
     <div class="bg-stretch">

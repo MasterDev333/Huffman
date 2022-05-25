@@ -3,7 +3,8 @@
 Template Name: Home
 Template Post Type: page
 */
-get_header(); ?>
+get_header(); 
+global $post; ?>
 <?php if( have_rows( 'modules' ) ): 
     while( have_rows( 'modules' ) ): the_row(); ?>
         <?php if( get_row_layout() == 'banner' ): ?>
@@ -106,46 +107,15 @@ get_header(); ?>
                         <div class="tile-module-content bg-primary">
                             <span class="line-1">&nbsp;</span>
                             <span class="line-2">&nbsp;</span>
-                            <form action="#" class="cta-form">
+                            <div class="cta-form">
                                 <div class="section-headline wow">
-                                    <h2 class="section-headline-title">Contact Our firm</h2>
-                                    <span class="subtitle">Put Our Family to Work for Your family</span>
+                                    <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'form_heading', 't' => 'h2', 'tc' => 'section-headline-title' ) ); ?>
+                                    <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'form_subheading', 't' => 'span', 'tc' => 'subtitle' ) ); ?>
                                 </div>
-                                <div class="form-row">
-                                    <div class="form-field">
-                                        <input type="text" class="input-form">
-                                        <label>First Name</label>
-                                    </div>
-                                    <div class="form-field">
-                                        <input type="text" class="input-form">
-                                        <label>Last Name</label>
-                                    </div>
-                                    <div class="form-field">
-                                        <input type="tel" class="input-form">
-                                        <label>Phone</label>
-                                    </div>
-                                    <div class="form-field">
-                                        <input type="email" class="input-form">
-                                        <label>Email</label>
-                                    </div>
-                                </div>
-                                <div class="form-field">
-                                    <select>
-                                        <option selected="" disabled=""></option>
-                                        <option value="1">Yes, I am a potential new client</option>
-                                        <option value="2">No, I'm a current existing client</option>
-                                        <option value="3">I'm neither.</option>
-                                    </select>
-                                    <label>Are you a new client?</label>
-                                </div>
-                                <div class="form-field">
-                                    <textarea class="input-form"></textarea>
-                                    <label>Message</label>
-                                </div>
-                                <div class="btn-form">
-                                    <button class="btn btn-primary btn-white">Send Information</button>
-                                </div>
-                            </form>
+                                <?php if( $form = get_sub_field( 'form' ) ): ?>
+                                    <?php echo do_shortcode(  $form ); ?>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -160,32 +130,36 @@ get_header(); ?>
             <section class="team-section section">
                 <div class="container">
                     <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'heading', 't' => 'h2', 'tc' => 'section-headline-title', 'w' => 'div', 'wc' => 'section-headline wow' ) ); ?>
-                    <?php if( have_rows( 'team' ) ): ?>
+                    <?php if( $teams = get_sub_field( 'team' ) ): ?>
                     <div class="team-tabset">
                         <ul class="control-list">
-                            <?php while( have_rows( 'team' ) ): the_row( ); ?>
-                            <li class="<?php echo get_row_index() == 1 ? 'active' : ''; ?>">
-                                <a href="#" data-tabs="tab-<?php echo get_row_index(); ?>">
-                                    <?php get_template_part_args( 'template-parts/content-modules-image', array( 'v' => 'image', 'is' => false, 'v2x' => false ) ); ?>
+                            <?php foreach( $teams as $key=>$post ): ?>
+                            <li class="<?php echo $key == 0 ? 'active' : ''; ?>">
+                                <a href="#" data-tabs="tab-<?php echo $key; ?>">
+                                    <img src="<?php echo get_the_post_thumbnail_url( ); ?>" alt="">
                                 </a>
                             </li>
-                            <?php endwhile; ?>
+                            <?php endforeach; ?>
                         </ul>
                         <div class="team-slider swiper">
                             <div class="swiper-wrapper">
-                                <?php while( have_rows( 'team' ) ): the_row( ); ?>
-                                <div class="swiper-slide <?php echo get_row_index() == 1 ? 'active' : ''; ?>" data-tabs-name="tab-<?php echo get_row_index(); ?>">
+                                <?php foreach( $teams as $key=>$post ): ?>
+                                <div class="swiper-slide <?php echo $key == 0 ? 'active' : ''; ?>" data-tabs-name="tab-<?php echo $key; ?>">
                                     <div class="team-card">
-                                        <?php get_template_part_args( 'template-parts/content-modules-image', array( 'v' => 'image', 'is' => false, 'v2x' => false, 'w' => 'div', 'wc' => 'team-card-visual' ) ); ?>
+                                        <?php if( has_post_thumbnail( ) ): ?>
+                                        <div class="team-card-visual">
+                                            <img src="<?php echo get_the_post_thumbnail_url( ); ?>" alt="">
+                                        </div>
+                                        <?php endif; ?>
                                         <div class="team-card-content">
-                                            <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'name', 't' => 'h3', 'tc' => 'subtitle' ) ); ?>
-                                            <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'role', 't' => 'span', 'tc' => 'position' ) ); ?>
-                                            <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'bio', 't' => 'p' ) ); ?>
-                                            <a href="#" class="btn btn-secondary">View Profile</a>
+                                            <h3 class="subtitle"><?php echo get_the_title( ); ?></h3>
+                                            <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'role', 'o' => 'f', 't' => 'span', 'tc' => 'position' ) ); ?>
+                                            <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'bio', 'o' => 'f', 't' => 'p' ) ); ?>
+                                            <a href="<?php echo get_the_permalink( ); ?>" class="btn btn-secondary">View Profile</a>
                                         </div>
                                     </div>
                                 </div>
-                                <?php endwhile; ?>
+                                <?php endforeach; ?>
                             </div>
                             <div class="slider-navigation">
                                 <div class="swiper-button-prev"></div>
@@ -194,7 +168,8 @@ get_header(); ?>
                             </div>
                         </div>
                     </div>
-                    <?php endif; ?>
+                    <?php wp_reset_query( );
+                    endif; ?>
                     <?php get_template_part_args( 'template-parts/content-modules-cta', array( 'v' => 'cta', 'c' => 'btn btn-primary', 'w' => 'div', 'wc' => 'btn-init' ) ); ?>
                 </div>
                 <div class="bg-stretch">
@@ -208,19 +183,19 @@ get_header(); ?>
             <section class="testimonial-section">
                 <div class="container">
                     <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'heading', 't' => 'h2', 'tc' => 'section-headline-title', 'w' => 'div', 'wc' => 'section-headline wow' ) ); ?>
-                    <?php if( have_rows( 'testimonials' ) ): ?>
+                    <?php if( $testimonials = get_sub_field( 'testimonials' ) ): ?>
                     <div class="testimonial-slider swiper">
                         <div class="swiper-wrapper">
-                            <?php while( have_rows( 'testimonials' ) ): the_row( ); ?>
+                            <?php foreach( $testimonials as $testimonial ): ?>
                             <div class="swiper-slide">
                                 <blockquote>
-                                    <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'content', 't' => 'p' ) ); ?>
-                                    <?php if( $name = get_sub_field( 'name' ) ): ?>
-                                    <strong class="author">- <?php echo $name; ?>.</strong>
+                                    <?php if( $content = get_field( 'content', $testimonial ) ): ?>
+                                        <p><?php echo $content; ?></p>
                                     <?php endif; ?>
+                                    <strong class="author">- <?php echo get_the_title( $testimonial ); ?>.</strong>
                                 </blockquote>
                             </div>
-                            <?php endwhile; ?>
+                            <?php endforeach; ?>
                         </div>
                         <div class="slider-navigation">
                             <div class="swiper-button-prev"></div>
@@ -312,13 +287,15 @@ get_header(); ?>
                     <?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'heading', 't' => 'h2', 'tc' => 'section-headline-title', 'w' => 'div', 'wc' => 'section-headline wow' ) ); ?>
                     <?php if( $posts = get_sub_field( 'articles' ) ): ?>
                     <ul class="row-list">
-                        <?php foreach( $posts as $post ): ?>
+                        <?php foreach( $posts as $post ):
+                            setup_postdata( $post ); ?>
                         <li>
                             <?php get_template_part( 'template-parts/loop', 'post-card' ); ?>
                         </li>
                         <?php endforeach; ?>
                     </ul>
-                    <?php endif; ?>
+                    <?php wp_reset_postdata( );
+                    endif; ?>
                     <?php get_template_part_args( 'template-parts/content-modules-cta', array( 'v' => 'cta', 'c' => 'btn btn-primary', 'w' => 'div', 'wc' => 'btn-unit' ) ); ?>
                 </div>
             </section>

@@ -1,4 +1,5 @@
-<?php get_header(); ?>
+<?php get_header(); 
+global $wp; ?>
 <?php echo breadcrumb_trail( array( 'separator' => '' ) );  ?>
 <section class="blog-section">
     <div class="container">
@@ -9,7 +10,7 @@
                     <h2 class="side-nav-title title-3">Categories</h2>
                     <ul class="menu">
                         <?php foreach( $categories as $category ): ?>
-                        <li><a href="<?php echo get_term_link( $category ); ?>"><?php echo $category->name; ?></a></li>
+                        <li class="<?php echo (get_term_link( $category ) == home_url( $wp->request  . '/') ) ? 'active' : ''; ?>"><a href="<?php echo get_term_link( $category ); ?>"><?php echo $category->name; ?></a></li>
                         <?php endforeach; ?>
                     </ul>
                 </div>
@@ -22,7 +23,6 @@
                             <ul>
                                 <li><a href="#">April <i>(1)</i></a></li>
                                 <li><a href="#">March <i>(2)</i></a></li>
-                                <li><a href="#">February <i>(2)</i></a></li>
                                 <li><a href="#">February <i>(2)</i></a></li>
                                 <li><a href="#">January <i>(2)</i></a></li>
                             </ul>

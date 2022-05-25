@@ -91,6 +91,35 @@
 				</div>
 			</div>
 		</header>
-		<?php if( !is_page_template( 'page-templates/home.php' ) ): ?>
-			<?php get_template_part( 'template-parts/content', 'banner' ); ?>
+		<?php if( !is_404( ) && !is_singular( 'video' ) ): ?>
+			<?php if( is_page( ) ): ?>
+				<?php 
+					if( !is_page_template( 'page-templates/home.php' ) ):
+						get_template_part( 'template-parts/content', 'banner' ); 
+					endif;
+				?>
+			<?php else: ?>
+				<section class="hero-section hero-single">
+					<div class="container">
+						<div class="section-headline left wow">
+							<h1 class="section-headline-title title-1">
+								<?php $title = get_the_title( ); ?>
+								<?php 
+								if( is_tax( 'video_category' ) ):
+									$title = 'Videos';
+								elseif( is_archive(  ) ): 
+									$title = 'Blog';
+								endif; ?>
+								<?php echo $title; ?>
+							</h1>
+						</div>
+					</div>
+					<div class="bg-stretch bg-overlay">
+						<picture>
+							<source srcset="<?php echo get_template_directory_uri() . '/assets/img/bg-hero-02.jpg'; ?>" media="(min-width: 768px)">
+							<img src="<?php echo get_template_directory_uri() . '/assets/img/bg-hero-sm-02.jpg'; ?>" alt="image description">
+						</picture>
+					</div>
+				</section>
+			<?php endif; ?>
 		<?php endif; ?>

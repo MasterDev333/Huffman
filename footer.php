@@ -50,46 +50,15 @@
 				<div class="container">
 					<div class="tile-module wow">
 						<div class="tile-module-content">
-							<form action="#" class="contact-form">
+							<div class="contact-form">
 								<div class="section-headline center wow">
 									<?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'cf_heading', 'o' => 'o', 't' => 'h2', 'tc' => 'section-headline-title' ) ); ?>
 									<?php get_template_part_args( 'template-parts/content-modules-text', array( 'v' => 'cf_sub_heading', 'o' => 'o', 't' => 'span', 'tc' => 'subtitle' ) ); ?>
 								</div>
-								<div class="form-row">
-									<div class="form-field">
-										<input type="text" class="input-form">
-										<label>First Name</label>
-									</div>
-									<div class="form-field">
-										<input type="text" class="input-form">
-										<label>Last Name</label>
-									</div>
-									<div class="form-field">
-										<input type="tel" class="input-form">
-										<label>Phone</label>
-									</div>
-									<div class="form-field">
-										<input type="email" class="input-form">
-										<label>Email</label>
-									</div>
-								</div>
-								<div class="form-field">
-									<select>
-										<option selected="" disabled="">&nbsp;</option>
-										<option value="1">Yes, I am a potential new client</option>
-										<option value="2">No, I'm a current existing client</option>
-										<option value="3">I'm neither.</option>
-									</select>
-									<label>Are you a new client?</label>
-								</div>
-								<div class="form-field">
-									<textarea class="input-form"></textarea>
-									<label>Message</label>
-								</div>
-								<div class="btn-form">
-									<button class="btn btn-primary">Send Information</button>
-								</div>
-							</form>
+								<?php if( $form = get_field( 'cf_form', 'options' ) ): ?>
+									<?php echo do_shortcode( $form ); ?>
+								<?php endif; ?>
+							</div>
 						</div>
 						<div class="tile-module-content bg-primary">
 							<span class="line-1">&nbsp;</span>

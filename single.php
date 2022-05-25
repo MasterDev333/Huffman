@@ -1,13 +1,12 @@
 <?php get_header(); ?>
 
-		<?php 
-		// breadcrumb_trail('echo=1&separator=/'); ?>
-
+		<?php // echo breadcrumb_trail(array('separator' => ''));  ?>
+		
 		<?php if (have_posts()) : ?>
 
 		<?php while (have_posts()) : the_post(); ?>
 		
-			<?php get_template_part( 'templates/content', 'post' ); ?>
+			<?php get_template_part('template-parts/content', 'post'); ?>
 			
 			<?php
 				// If comments are open or we have at least one comment, load up the comment template.
@@ -19,7 +18,7 @@
 		<?php endwhile; ?>
 		
 	<?php else : ?>
-		<?php get_template_part( 'templates/content', 'none' ); ?>
+		<?php get_template_part('template-parts/content', 'none'); ?>
 	<?php endif; ?>
 
 <?php get_footer(); ?>
